@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'codigoconjuan/app-salon_php_mvc_js_sass',
+        'name' => '/app-salon_php_mvc_js_sass',
         'pretty_version' => '1.0.0+no-version-set',
         'version' => '1.0.0.0',
         'reference' => null,
@@ -10,7 +10,7 @@
         'dev' => true,
     ),
     'versions' => array(
-        'codigoconjuan/app-salon_php_mvc_js_sass' => array(
+        '/app-salon_php_mvc_js_sass' => array(
             'pretty_version' => '1.0.0+no-version-set',
             'version' => '1.0.0.0',
             'reference' => null,

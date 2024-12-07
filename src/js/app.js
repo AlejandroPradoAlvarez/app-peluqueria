@@ -217,11 +217,11 @@ async function deshabilitarHoras() {
                 hora.textContent = hora.value;
                 hora.classList.add('disponible');
             }
-        })        
+        })
     } catch (error) {
         console.log(error);
     }
-    
+
 }
 
 function mostrarHoras(horas) {
@@ -232,11 +232,11 @@ function mostrarHoras(horas) {
         const opcion = document.createElement('OPTION');
         opcion.value = horaCita;
         opcion.textContent = horaCita;
-        opcion.dataset.hora_id = id;    
-        opcion.classList.add('disponible');    
+        opcion.dataset.hora_id = id;
+        opcion.classList.add('disponible');
 
         horarios.appendChild(opcion);
-    })    
+    })
 }
 
 function seleccionarHora() {
@@ -246,7 +246,7 @@ function seleccionarHora() {
         const hora = e.target.value;
         if (e.target.selectedOptions) {
             const selectedOptionsArray = Array.from(e.target.selectedOptions).map(option => option.value);
-           // console.log("Opciones seleccionadas:", selectedOptionsArray);
+            // console.log("Opciones seleccionadas:", selectedOptionsArray);
         } else {
             console.error("No hay opciones seleccionadas o el elemento no es un <select>.");
         }
@@ -352,6 +352,7 @@ function mostrarResumen() {
     const botonReservar = document.createElement('BUTTON');
     botonReservar.classList.add('boton');
     botonReservar.textContent = 'Reservar Cita';
+    botonReservar.id = 'reserva';
     botonReservar.onclick = reservarCita;
 
     resumen.appendChild(nombreCliente);
@@ -395,18 +396,38 @@ async function reservarCita() {
 
         const resultado = await respuesta.json();
 
-        if(resultado.alertas) {
+        if (resultado.alertas) {
             Toast.fire({
                 icon: 'error',
                 title: resultado.alertas
             })
             return;
         } else {
+            const botonReservar = document.querySelector('#reserva');
+            if (botonReservar) {
+                botonReservar.remove(); // Elimina completamente el botón del DOM
+            }
+
             Toast.fire({
                 icon: 'success',
                 title: 'La cita fue creada correctamente.'
             }).then(() => {
-                window.location.reload();
+
+                const resumen = document.querySelector('.contenido-resumen');
+
+                const botonEliminar = document.createElement('BUTTON');
+                botonEliminar.classList.add('boton');
+                botonEliminar.classList.add('boton-eliminar');
+                botonEliminar.textContent = 'Eliminar Cita';
+                botonEliminar.id = 'eliminar';
+                botonEliminar.onclick = reservarCita;
+
+                resumen.appendChild(botonEliminar);
+
+                // Agregar un evento onclick al botón
+                botonEliminar.onclick = function () {
+                    eliminarCita(id); // Llamar a la función privada con el ID de la cita
+                };
             })
         }
 
@@ -416,5 +437,33 @@ async function reservarCita() {
             title: 'Oops! Ocurrio un error al guardar la cita.'
         })
     }
-    
+
+    function eliminarCita(idCita) {
+        // Crear un objeto FormData para enviar datos
+        const formData = new FormData();
+        formData.append('id', idCita);
+
+        // Hacer una solicitud fetch a la API
+        fetch('/api/eliminar', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            const botonEliminar = document.querySelector('#eliminar');
+            if (botonEliminar) {
+                botonEliminar.remove(); // Elimina completamente el botón del DOM
+            }
+            Toast.fire({
+                icon: 'success',
+                title: 'La cita fue eliminada correctamente.'
+            }).then(() => {
+                window.location.reload();
+            })
+        }).catch(error => {
+            Toast.fire({
+                icon: 'error',
+                title: 'Oops! Ocurrio un error al eliminar la cita.'
+            });
+        })
+    }
+
 }

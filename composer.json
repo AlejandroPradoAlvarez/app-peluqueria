@@ -1,5 +1,5 @@
 {
-    "name": "codigoconjuan/app-salon_php_mvc_js_sass",
+    "name": "/app-salon_php_mvc_js_sass",
     "description": "Proyecto PHP 8, MVC, SQL, SASS, Active Record",
     "type": "project",
     "autoload": {
