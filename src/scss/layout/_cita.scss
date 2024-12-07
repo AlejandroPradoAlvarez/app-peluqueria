@@ -1,0 +1,21 @@
+
+
+.seccion{
+
+    padding: 5rem 0;
+    display: none;
+
+    .text-center{
+        text-align: center;
+    }
+
+   
+}
+
+.mostrar{
+    display: block;
+}
+
+.ocultar{
+    visibility: hidden;//lo oculta pero sigue ocupando el espacio en el que estaba 
+}
