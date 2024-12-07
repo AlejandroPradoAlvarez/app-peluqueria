@@ -1,6 +1,6 @@
 <h1 class="nombre-pagina">Actualizar Servicios</h1>
 
-<p class="descripcion-pagina">Modifica los valroes del formulario</p>
+<p class="descripcion-pagina">Modifica los valores del formulario</p>
 
 
 <?php 

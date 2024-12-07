@@ -8,7 +8,7 @@ use MVC\Router;
 class ServicioController{
 
     public static function index(Router $router){
-
+        if(isset($_SESSION['admin'])){
         iniciarSession();
 
         isAdmin();
@@ -19,6 +19,14 @@ class ServicioController{
             'nombre'=> $_SESSION['nombre'],
             'servicios'=> $servicios
         ]);
+        }else{
+            $servicios= Servicio::all();
+
+            $router->render('servicios/index', [
+            'nombre'=> '',
+            'servicios'=> $servicios
+        ]);
+        }
     }
 
 

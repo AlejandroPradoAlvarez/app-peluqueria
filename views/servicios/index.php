@@ -19,7 +19,7 @@
 
             <div class="acciones">
 
-                <?php if (isset($_SESSION['nombre']) && $_SESSION['admin'] === 1): ?>
+                    <?php if (isset($_SESSION['nombre']) && $_SESSION['admin'] === '1'): ?>
 
                     <a class="boton" href="/servicios/actualizar?id=<?php echo $servicio->id; ?>">Actualizar</a>
 
