@@ -123,17 +123,14 @@ class Email{
     
         $mail->Body = $contenido;
     
-        // $this->crearCalendario($resultado);
+        // Generar el archivo .ics
+        $icalContent = $this->crearCalendario($resultado);
 
-       
+        // Adjuntar el archivo .ics
+        $mail->addStringAttachment($icalContent, 'cita.ics', 'base64', 'text/calendar');
 
-          // Generar el archivo .ics
-    $icalContent = $this->crearCalendario($resultado);
-
-    // Adjuntar el archivo .ics
-    $mail->addStringAttachment($icalContent, 'cita.ics', 'base64', 'text/calendar');
-
-     //  //ENVIAR EL EMAIL
+        
+        //ENVIAR EL EMAIL
          $mail->send();
     }
     
