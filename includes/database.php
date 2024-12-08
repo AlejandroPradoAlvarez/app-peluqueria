@@ -2,7 +2,11 @@
 
 //$db = mysqli_connect('localhost', 'root', '', 'appsalon_horarios');
 
-$db = mysqli_connect($_ENV['DB_HOST'] ,$_ENV['DB_USER'] , $_ENV['DB_PASS'] , $_ENV['DB_DBNAME'] );
+$db = mysqli_connect(
+    $_ENV['DB_HOST'] ,
+    $_ENV['DB_USER'] , 
+    $_ENV['DB_PASS'] , 
+    $_ENV['DB_DBNAME'] );
 
 $db->set_charset('utf8');
 
