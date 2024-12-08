@@ -95,7 +95,6 @@ class Email{
 
         $mail->Body=$contenido;
 
-        var_dump($contenido);
         //ENVIAR EL EMAIL
         $mail->send();
 
