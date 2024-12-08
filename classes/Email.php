@@ -94,7 +94,10 @@ class Email{
         $contenido.="</html>";
 
         $mail->Body=$contenido;
-        var_dump($contenido);
+
+        echo 'hola';
+        exit;
+
         //ENVIAR EL EMAIL
         $mail->send();
 
