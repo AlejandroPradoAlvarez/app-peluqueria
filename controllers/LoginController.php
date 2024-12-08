@@ -1,7 +1,7 @@
 <?php 
 
 namespace Controllers;
-use classes\email;
+use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
