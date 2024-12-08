@@ -31,11 +31,12 @@ class Email{
         $mail->Port = $_ENV['MAIL_PORT'];
         $mail->Username = $_ENV['MAIL_USER'];
         $mail->Password = $_ENV['MAIL_PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
 
-        $mail->setFrom('cuentas@peluqueria.com');
+        $mail->setFrom('apppelumvc@gmail.com','Peluqueria');
 
-        $mail->addAddress('cuentas@peluqueria.com','Peluqueria.com');
+        $mail->addAddress($this->email,$this->nombre);
 
         $mail->Subject='Confirma tu cuenta';
 
@@ -73,9 +74,9 @@ class Email{
 
 
 
-        $mail->setFrom('cuentas@peluqueria.com');
+        $mail->setFrom('apppelumvc@gmail.com','Peluqueria.com');
 
-        $mail->addAddress('cuentas@peluqueria.com','Peluqueria.com');
+        $mail->addAddress($this->email,$this->nombre);
 
         $mail->Subject='Restablece tu password';
 
@@ -109,8 +110,8 @@ class Email{
         $mail->Password = $_ENV['MAIL_PASSWORD'];
 
     
-        $mail->setFrom('cuentas@peluqueria.com', 'Peluqueria.com');
-        $mail->addAddress('cuentas@peluqueria.com', $this->nombre);
+        $mail->setFrom('apppelumvc@gmail.com', 'Peluqueria.com');
+        $mail->addAddress($this->email,$this->nombre);
     
         $mail->Subject = 'Recordatorio cita';
         $mail->isHTML(true);

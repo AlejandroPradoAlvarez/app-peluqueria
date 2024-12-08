@@ -77,8 +77,8 @@ class APIController {
             'servicios' => $resultado
         ];
 
-        // $email= new Email($_SESSION['email'], $_SESSION['nombre'], '0');//mandamos email con la cita
-        // $email->enviarCita(json_decode($_POST['cita']));
+         $email= new Email($_SESSION['email'], $_SESSION['nombre'], '0');//mandamos email con la cita
+         $email->enviarCita(json_decode($_POST['cita']));
 
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
     }
