@@ -138,7 +138,7 @@ function mostrarServicios(servicios) {
 
         const precioServicio = document.createElement('P');
         precioServicio.classList.add('precio-servicio');
-        precioServicio.textContent = `$ ${precio}`;
+        precioServicio.textContent = `${precio} €`;
 
         const servicioDiv = document.createElement('DIV');
         servicioDiv.classList.add('servicio');
@@ -313,7 +313,7 @@ function mostrarResumen() {
         const textoServicio = document.createElement('P');
         textoServicio.textContent = nombre;
         const precioServicio = document.createElement('P');
-        precioServicio.innerHTML = `<span>Precio:</span> $${precio}`;
+        precioServicio.innerHTML = `<span>Precio:</span> ${precio} €`;
 
         contenedorServicio.appendChild(textoServicio);
         contenedorServicio.appendChild(precioServicio);
@@ -323,7 +323,7 @@ function mostrarResumen() {
     // sumar el total de servicios
     const total = servicios.reduce((total, servicio) => total + parseFloat(servicio.precio), 0);
     const totalParrafo = document.createElement('P');
-    totalParrafo.innerHTML = `<span>Total:</span> $${total}`;
+    totalParrafo.innerHTML = `<span>Total:</span> ${total} €`;
 
 
     const nombreCliente = document.createElement('P');
@@ -385,6 +385,7 @@ async function reservarCita() {
     datos.append('fecha', fecha);
     datos.append('horaId', hora_id);
     datos.append('servicios', idServicios);
+    datos.append('cita', JSON.stringify(cita));
 
     try {
         // Peticion hacia la API

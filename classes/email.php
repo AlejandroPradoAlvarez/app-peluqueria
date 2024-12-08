@@ -26,11 +26,11 @@ class Email{
         // Looking to send emails in production? Check out our Email API/SMTP product!
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '17c274a23d7bc2';
-        $mail->Password = 'a3bd45a6a6e1f0';
+        $mail->Port = $_ENV['MAIL_PORT'];
+        $mail->Username = $_ENV['MAIL_USER'];
+        $mail->Password = $_ENV['MAIL_PASSWORD'];
 
 
         $mail->setFrom('cuentas@peluqueria.com');
@@ -49,7 +49,7 @@ class Email{
         $contenido="<html>";
         $contenido.="<p><strong>HOLA ".$this->nombre. "</strong> Has creado tu cuenta en la peluqueria, 
         solo debes confirmarla presionando el siguiente enlace</p>";
-        $contenido .="<p>Presiona aqui: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'>
+        $contenido .="<p>Presiona aqui: <a href='" . $_ENV['SERVER_HOST'] . "/confirmar-cuenta?token=" . $this->token . "'>
          Confirmar cuenta</a></p>";
         $contenido.="<p>Si no solicitasteste esta cuenta, puedes ignorar el mensaje</p>";
         $contenido.="</html>";
@@ -65,11 +65,12 @@ class Email{
 
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '17c274a23d7bc2';
-        $mail->Password = 'a3bd45a6a6e1f0';
+        $mail->Port = $_ENV['MAIL_PORT'];
+        $mail->Username = $_ENV['MAIL_USER'];
+        $mail->Password = $_ENV['MAIL_PASSWORD'];
+
 
 
         $mail->setFrom('cuentas@peluqueria.com');
@@ -86,7 +87,7 @@ class Email{
         $contenido="<html>";
         $contenido.="<p><strong>HOLA ".$this->nombre. "</strong> Has solicitado  reestablecer tu password, 
         sigue el siguiente enlace para hacerlo.</p>";
-        $contenido .="<p>Presiona aqui: <a href='http://localhost:3000/recuperar?token=" . $this->token . 
+        $contenido .="<p>Presiona aqui: <a href='" . $_ENV['SERVER_HOST'] . "/recuperar?token=" . $this->token . 
         "'>Reestablecer password.</a></p>";
         $contenido.="<p>Si no solicitasteste esta cuenta, puedes ignorar el mensaje</p>";
         $contenido.="</html>";
@@ -101,14 +102,15 @@ class Email{
     public function enviarCita($resultado) {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '17c274a23d7bc2';
-        $mail->Password = 'a3bd45a6a6e1f0';
+        $mail->Port = $_ENV['MAIL_PORT'];
+        $mail->Username = $_ENV['MAIL_USER'];
+        $mail->Password = $_ENV['MAIL_PASSWORD'];
+
     
         $mail->setFrom('cuentas@peluqueria.com', 'Peluqueria.com');
-        $mail->addAddress('cuentas@peluqueria.com', 'Peluqueria.com');
+        $mail->addAddress('cuentas@peluqueria.com', $this->nombre);
     
         $mail->Subject = 'Recordatorio cita';
         $mail->isHTML(true);
@@ -116,11 +118,29 @@ class Email{
     
         // Contenido del correo
         $contenido = "<html>";
-        $contenido .= "<p><strong>HOLA {$this->nombre}</strong>. Has solicitado restablecer tu contraseña.</p>";
-        $contenido .= "<p>Sigue el siguiente enlace para hacerlo: ";
-        $contenido .= "<p>Si no solicitaste esta acción, puedes ignorar este mensaje.</p>";
+        $contenido .= "<p><strong>Hola {$this->nombre}</strong>. Has reservado una cita.</p>";
+        $contenido .= "<p>Fecha: {$resultado->fecha}</p>";
+        $contenido .= "<p>Hora: {$resultado->hora}</p>";
+        
+        // Contar el número de servicios
+        $numServicios = count($resultado->servicios);
+        $contenido .= "<p>Número de servicios: {$numServicios}</p>";
+        
+        // Calcular el precio total
+        $precioTotal = array_reduce($resultado->servicios, function($carry, $servicio) {
+            return $carry + $servicio->precio;
+        }, 0);
+        $contenido .= "<p>Precio total: " . number_format($precioTotal, 2) . " €</p>";
+        
+        // Listar los servicios reservados
+        $contenido .= "<p>Servicios reservados:</p><ul>";
+        foreach ($resultado->servicios as $servicio) {
+            $contenido .= "<li>{$servicio->nombre}, {$servicio->precio} €</li>";
+        }
+        $contenido .= "</ul>";
+        
         $contenido .= "</html>";
-    
+        
         $mail->Body = $contenido;
     
         // Generar el archivo .ics

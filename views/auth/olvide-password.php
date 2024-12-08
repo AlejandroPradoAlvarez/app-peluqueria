@@ -12,9 +12,9 @@
         <input type="email" id="email" name="email" placeholder="Tu email">
     </div>
 
-
-    <input type="submit" value="Enviar Instrucciones" class="boton">
-
+    <div class="contenedor-boton">
+        <input type="submit" value="Enviar Instrucciones" class="boton">
+    </div>
 
 </form>
 

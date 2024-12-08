@@ -1,6 +1,11 @@
-<h1 class="nombre-pagina">Servicios</h1>
+<div class="banner">
+    <a href="javascript:history.back()">Volver atrás</a>
+</div>
 
-<p class="descripcion-pagina">Adminsitracion de Servicios</p>
+<h1 class="nombre-pagina">Servicios</h1>
+<?php if (isset($_SESSION['nombre']) && $_SESSION['admin'] === '1'): ?>
+    <p class="descripcion-pagina">Adminsitracion de Servicios</p>
+<?php endif; ?>
 
 
 <?php 

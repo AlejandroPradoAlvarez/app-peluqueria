@@ -11,6 +11,7 @@ class Cita extends ActiveRecord {
     public $fecha;
     public $horaId;
     public $usuarioId;
+    public $cita;
 
     public function __construct($args = [])
     {
@@ -18,5 +19,6 @@ class Cita extends ActiveRecord {
         $this->fecha = $args['fecha'] ?? '';
         $this->horaId = $args['horaId'] ?? '';
         $this->usuarioId = $args['usuarioId'] ?? '';
+        $this->cita = $args['cita'] ?? '';
     }
 }

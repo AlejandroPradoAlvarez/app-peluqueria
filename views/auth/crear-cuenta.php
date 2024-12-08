@@ -25,7 +25,6 @@
         name="apellido" 
         placeholder="Tu apellido"
         value="<?php echo s($usuario->apellido);?>">
-        >
     </div>
         
 
@@ -37,7 +36,6 @@
          name="telefono" 
          placeholder="Tu telefono"
          value="<?php echo s($usuario->telefono);?>">
-         >
     </div>
 
 
@@ -49,7 +47,6 @@
         name="email" 
         placeholder="Tu E-mail"
         value="<?php echo s($usuario->email);?>">
-        >
     </div>
 
     <div class="campo">
@@ -59,12 +56,12 @@
         id="password" 
         name="password" 
         placeholder="Tu password">
-        >
     </div>
+    <div class="contenedor-boton">
 
     <input type="submit" value="Crear Cuenta" class="boton">
 
-
+</div>
 </form>
 
 

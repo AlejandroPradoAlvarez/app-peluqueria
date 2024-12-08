@@ -28,7 +28,10 @@ class Router
 
         // $auth = $_SESSION['login'] ?? null;
 
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        //$currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        //$method = $_SERVER['REQUEST_METHOD'];
+
+        $currentUrl=strtok($_SERVER['REQUEST_URI'], '?') ?? '/';//ELIMINA QUERY STREAMD E LA URL COMO LOS TOKENS ,...
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
