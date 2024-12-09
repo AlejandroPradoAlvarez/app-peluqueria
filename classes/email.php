@@ -156,11 +156,11 @@ class Email{
     }
     
     public function crearCalendario($resultado) {
-        $summary = "Reunión de prueba"; // Título del evento
-        $location = "Sala de reuniones, Oficina"; // Ubicación
-        $description = "Cita para discutir el progreso del proyecto."; // Descripción
-        $startDate = "2024-12-10 10:00:00"; // Fecha y hora de inicio (Formato Y-m-d H:i:s)
-        $endDate = "2024-12-10 11:00:00"; // Fecha y hora de fin (Formato Y-m-d H:i:s)
+        $summary = "Cita peluqueria"; // Título del evento
+        $location = "Peluqueria"; // Ubicación
+        $description = "Cita peluquero."; // Descripción
+        $startDate = "{$resultado->fecha}{$resultado->hora}"; // Fecha y hora de inicio (Formato Y-m-d H:i:s)
+        $endDate = "{$resultado->fecha} {$resultado->hora}"; // Fecha y hora de fin (Formato Y-m-d H:i:s)
     
         // Convertir las fechas al formato adecuado para iCalendar
         $startDateFormatted = date('Ymd\THis\Z', strtotime($startDate));
