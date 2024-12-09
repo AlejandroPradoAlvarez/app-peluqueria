@@ -26,12 +26,12 @@ class Email{
         // Looking to send emails in production? Check out our Email API/SMTP product!
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = '587';
+        $mail->Username = 'apppelumvc@gmail.com';
+        $mail->Password = 'fqpaqqdmyntrpixw';
+        $mail->SMTPSecure = 'tls';
 
 
         $mail->setFrom('apppelumvc@gmail.com','Peluqueria');
@@ -66,11 +66,12 @@ class Email{
 
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
+        $mail->Port = '587';
+        $mail->Username = 'apppelumvc@gmail.com';
+        $mail->Password = 'fqpaqqdmyntrpixw';
+        $mail->SMTPSecure = 'tls';
 
 
 
@@ -103,11 +104,12 @@ class Email{
     public function enviarCita($resultado) {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
+        $mail->Port = '587';
+        $mail->Username = 'apppelumvc@gmail.com';
+        $mail->Password = 'fqpaqqdmyntrpixw';
+        $mail->SMTPSecure = 'tls';
 
     
         $mail->setFrom('apppelumvc@gmail.com', 'Peluqueria.com');
